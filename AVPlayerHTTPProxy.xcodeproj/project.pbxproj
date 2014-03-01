@@ -22,6 +22,8 @@
 		CF1B5E5218C19D820086C172 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1B5E3118C19D820086C172 /* UIKit.framework */; };
 		CF1B5E5A18C19D820086C172 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF1B5E5818C19D820086C172 /* InfoPlist.strings */; };
 		CF1B5E5C18C19D820086C172 /* ios_avplayer_http_proxyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1B5E5B18C19D820086C172 /* ios_avplayer_http_proxyTests.m */; };
+		CF1B5E6918C19DEA0086C172 /* mongoose.c in Sources */ = {isa = PBXBuildFile; fileRef = CF1B5E6518C19DEA0086C172 /* mongoose.c */; };
+		CF1B5E6A18C19DEA0086C172 /* MongooseDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1B5E6818C19DEA0086C172 /* MongooseDaemon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,14 +37,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF1B5E2A18C19D820086C172 /* ios-avplayer-http-proxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-avplayer-http-proxy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1B5E2A18C19D820086C172 /* AVPlayerHTTPProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AVPlayerHTTPProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1B5E2D18C19D820086C172 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CF1B5E2F18C19D820086C172 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CF1B5E3118C19D820086C172 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		CF1B5E3518C19D820086C172 /* ios-avplayer-http-proxy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ios-avplayer-http-proxy-Info.plist"; sourceTree = "<group>"; };
+		CF1B5E3518C19D820086C172 /* AVPlayerHTTPProxy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AVPlayerHTTPProxy-Info.plist"; sourceTree = "<group>"; };
 		CF1B5E3718C19D820086C172 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF1B5E3918C19D820086C172 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CF1B5E3B18C19D820086C172 /* ios-avplayer-http-proxy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-avplayer-http-proxy-Prefix.pch"; sourceTree = "<group>"; };
+		CF1B5E3B18C19D820086C172 /* AVPlayerHTTPProxy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVPlayerHTTPProxy-Prefix.pch"; sourceTree = "<group>"; };
 		CF1B5E3C18C19D820086C172 /* realjkAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realjkAppDelegate.h; sourceTree = "<group>"; };
 		CF1B5E3D18C19D820086C172 /* realjkAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = realjkAppDelegate.m; sourceTree = "<group>"; };
 		CF1B5E4018C19D820086C172 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -50,11 +52,15 @@
 		CF1B5E4518C19D820086C172 /* realjkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realjkViewController.h; sourceTree = "<group>"; };
 		CF1B5E4618C19D820086C172 /* realjkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = realjkViewController.m; sourceTree = "<group>"; };
 		CF1B5E4818C19D820086C172 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CF1B5E4E18C19D820086C172 /* ios-avplayer-http-proxyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-avplayer-http-proxyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1B5E4E18C19D820086C172 /* AVPlayerHTTPProxyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVPlayerHTTPProxyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1B5E4F18C19D820086C172 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CF1B5E5718C19D820086C172 /* ios-avplayer-http-proxyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ios-avplayer-http-proxyTests-Info.plist"; sourceTree = "<group>"; };
+		CF1B5E5718C19D820086C172 /* AVPlayerHTTPProxyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AVPlayerHTTPProxyTests-Info.plist"; sourceTree = "<group>"; };
 		CF1B5E5918C19D820086C172 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF1B5E5B18C19D820086C172 /* ios_avplayer_http_proxyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_avplayer_http_proxyTests.m; sourceTree = "<group>"; };
+		CF1B5E6518C19DEA0086C172 /* mongoose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mongoose.c; sourceTree = "<group>"; };
+		CF1B5E6618C19DEA0086C172 /* mongoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mongoose.h; sourceTree = "<group>"; };
+		CF1B5E6718C19DEA0086C172 /* MongooseDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MongooseDaemon.h; sourceTree = "<group>"; };
+		CF1B5E6818C19DEA0086C172 /* MongooseDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MongooseDaemon.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +100,8 @@
 		CF1B5E2B18C19D820086C172 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF1B5E2A18C19D820086C172 /* ios-avplayer-http-proxy.app */,
-				CF1B5E4E18C19D820086C172 /* ios-avplayer-http-proxyTests.xctest */,
+				CF1B5E2A18C19D820086C172 /* AVPlayerHTTPProxy.app */,
+				CF1B5E4E18C19D820086C172 /* AVPlayerHTTPProxyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +120,10 @@
 		CF1B5E3318C19D820086C172 /* ios-avplayer-http-proxy */ = {
 			isa = PBXGroup;
 			children = (
+				CF1B5E6518C19DEA0086C172 /* mongoose.c */,
+				CF1B5E6618C19DEA0086C172 /* mongoose.h */,
+				CF1B5E6718C19DEA0086C172 /* MongooseDaemon.h */,
+				CF1B5E6818C19DEA0086C172 /* MongooseDaemon.m */,
 				CF1B5E3C18C19D820086C172 /* realjkAppDelegate.h */,
 				CF1B5E3D18C19D820086C172 /* realjkAppDelegate.m */,
 				CF1B5E3F18C19D820086C172 /* Main_iPhone.storyboard */,
@@ -129,10 +139,10 @@
 		CF1B5E3418C19D820086C172 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CF1B5E3518C19D820086C172 /* ios-avplayer-http-proxy-Info.plist */,
+				CF1B5E3518C19D820086C172 /* AVPlayerHTTPProxy-Info.plist */,
 				CF1B5E3618C19D820086C172 /* InfoPlist.strings */,
 				CF1B5E3918C19D820086C172 /* main.m */,
-				CF1B5E3B18C19D820086C172 /* ios-avplayer-http-proxy-Prefix.pch */,
+				CF1B5E3B18C19D820086C172 /* AVPlayerHTTPProxy-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -149,7 +159,7 @@
 		CF1B5E5618C19D820086C172 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CF1B5E5718C19D820086C172 /* ios-avplayer-http-proxyTests-Info.plist */,
+				CF1B5E5718C19D820086C172 /* AVPlayerHTTPProxyTests-Info.plist */,
 				CF1B5E5818C19D820086C172 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -158,9 +168,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CF1B5E2918C19D820086C172 /* ios-avplayer-http-proxy */ = {
+		CF1B5E2918C19D820086C172 /* AVPlayerHTTPProxy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF1B5E5F18C19D820086C172 /* Build configuration list for PBXNativeTarget "ios-avplayer-http-proxy" */;
+			buildConfigurationList = CF1B5E5F18C19D820086C172 /* Build configuration list for PBXNativeTarget "AVPlayerHTTPProxy" */;
 			buildPhases = (
 				CF1B5E2618C19D820086C172 /* Sources */,
 				CF1B5E2718C19D820086C172 /* Frameworks */,
@@ -170,14 +180,14 @@
 			);
 			dependencies = (
 			);
-			name = "ios-avplayer-http-proxy";
+			name = AVPlayerHTTPProxy;
 			productName = "ios-avplayer-http-proxy";
-			productReference = CF1B5E2A18C19D820086C172 /* ios-avplayer-http-proxy.app */;
+			productReference = CF1B5E2A18C19D820086C172 /* AVPlayerHTTPProxy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF1B5E4D18C19D820086C172 /* ios-avplayer-http-proxyTests */ = {
+		CF1B5E4D18C19D820086C172 /* AVPlayerHTTPProxyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF1B5E6218C19D820086C172 /* Build configuration list for PBXNativeTarget "ios-avplayer-http-proxyTests" */;
+			buildConfigurationList = CF1B5E6218C19D820086C172 /* Build configuration list for PBXNativeTarget "AVPlayerHTTPProxyTests" */;
 			buildPhases = (
 				CF1B5E4A18C19D820086C172 /* Sources */,
 				CF1B5E4B18C19D820086C172 /* Frameworks */,
@@ -188,9 +198,9 @@
 			dependencies = (
 				CF1B5E5418C19D820086C172 /* PBXTargetDependency */,
 			);
-			name = "ios-avplayer-http-proxyTests";
+			name = AVPlayerHTTPProxyTests;
 			productName = "ios-avplayer-http-proxyTests";
-			productReference = CF1B5E4E18C19D820086C172 /* ios-avplayer-http-proxyTests.xctest */;
+			productReference = CF1B5E4E18C19D820086C172 /* AVPlayerHTTPProxyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +218,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CF1B5E2518C19D820086C172 /* Build configuration list for PBXProject "ios-avplayer-http-proxy" */;
+			buildConfigurationList = CF1B5E2518C19D820086C172 /* Build configuration list for PBXProject "AVPlayerHTTPProxy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -221,8 +231,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CF1B5E2918C19D820086C172 /* ios-avplayer-http-proxy */,
-				CF1B5E4D18C19D820086C172 /* ios-avplayer-http-proxyTests */,
+				CF1B5E2918C19D820086C172 /* AVPlayerHTTPProxy */,
+				CF1B5E4D18C19D820086C172 /* AVPlayerHTTPProxyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,8 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF1B5E6A18C19DEA0086C172 /* MongooseDaemon.m in Sources */,
 				CF1B5E4718C19D820086C172 /* realjkViewController.m in Sources */,
 				CF1B5E3A18C19D820086C172 /* main.m in Sources */,
+				CF1B5E6918C19DEA0086C172 /* mongoose.c in Sources */,
 				CF1B5E3E18C19D820086C172 /* realjkAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +285,7 @@
 /* Begin PBXTargetDependency section */
 		CF1B5E5418C19D820086C172 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CF1B5E2918C19D820086C172 /* ios-avplayer-http-proxy */;
+			target = CF1B5E2918C19D820086C172 /* AVPlayerHTTPProxy */;
 			targetProxy = CF1B5E5318C19D820086C172 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -394,9 +406,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ios-avplayer-http-proxy/ios-avplayer-http-proxy-Prefix.pch";
-				INFOPLIST_FILE = "ios-avplayer-http-proxy/ios-avplayer-http-proxy-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ios-avplayer-http-proxy/AVPlayerHTTPProxy-Prefix.pch";
+				INFOPLIST_FILE = "ios-avplayer-http-proxy/AVPlayerHTTPProxy-Info.plist";
+				PRODUCT_NAME = AVPlayerHTTPProxy;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,9 +419,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ios-avplayer-http-proxy/ios-avplayer-http-proxy-Prefix.pch";
-				INFOPLIST_FILE = "ios-avplayer-http-proxy/ios-avplayer-http-proxy-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ios-avplayer-http-proxy/AVPlayerHTTPProxy-Prefix.pch";
+				INFOPLIST_FILE = "ios-avplayer-http-proxy/AVPlayerHTTPProxy-Info.plist";
+				PRODUCT_NAME = AVPlayerHTTPProxy;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -430,8 +442,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "ios-avplayer-http-proxyTests/ios-avplayer-http-proxyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ios-avplayer-http-proxyTests/AVPlayerHTTPProxyTests-Info.plist";
+				PRODUCT_NAME = AVPlayerHTTPProxyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -449,8 +461,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ios-avplayer-http-proxy/ios-avplayer-http-proxy-Prefix.pch";
-				INFOPLIST_FILE = "ios-avplayer-http-proxyTests/ios-avplayer-http-proxyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ios-avplayer-http-proxyTests/AVPlayerHTTPProxyTests-Info.plist";
+				PRODUCT_NAME = AVPlayerHTTPProxyTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -459,7 +471,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CF1B5E2518C19D820086C172 /* Build configuration list for PBXProject "ios-avplayer-http-proxy" */ = {
+		CF1B5E2518C19D820086C172 /* Build configuration list for PBXProject "AVPlayerHTTPProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF1B5E5D18C19D820086C172 /* Debug */,
@@ -468,21 +480,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF1B5E5F18C19D820086C172 /* Build configuration list for PBXNativeTarget "ios-avplayer-http-proxy" */ = {
+		CF1B5E5F18C19D820086C172 /* Build configuration list for PBXNativeTarget "AVPlayerHTTPProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF1B5E6018C19D820086C172 /* Debug */,
 				CF1B5E6118C19D820086C172 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		CF1B5E6218C19D820086C172 /* Build configuration list for PBXNativeTarget "ios-avplayer-http-proxyTests" */ = {
+		CF1B5E6218C19D820086C172 /* Build configuration list for PBXNativeTarget "AVPlayerHTTPProxyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF1B5E6318C19D820086C172 /* Debug */,
 				CF1B5E6418C19D820086C172 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

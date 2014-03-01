@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CF1B5E2918C19D820086C172"
-               BuildableName = "ios-avplayer-http-proxy.app"
-               BlueprintName = "ios-avplayer-http-proxy"
-               ReferencedContainer = "container:ios-avplayer-http-proxy.xcodeproj">
+               BuildableName = "AVPlayer HTTP Proxy.app"
+               BlueprintName = "AVPlayerHTTPProxy"
+               ReferencedContainer = "container:AVPlayerHTTPProxy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CF1B5E4D18C19D820086C172"
-               BuildableName = "ios-avplayer-http-proxyTests.xctest"
-               BlueprintName = "ios-avplayer-http-proxyTests"
-               ReferencedContainer = "container:ios-avplayer-http-proxy.xcodeproj">
+               BuildableName = "AVPlayer HTTP ProxyTests.xctest"
+               BlueprintName = "AVPlayerHTTPProxyTests"
+               ReferencedContainer = "container:AVPlayerHTTPProxy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF1B5E2918C19D820086C172"
-            BuildableName = "ios-avplayer-http-proxy.app"
-            BlueprintName = "ios-avplayer-http-proxy"
-            ReferencedContainer = "container:ios-avplayer-http-proxy.xcodeproj">
+            BuildableName = "AVPlayer HTTP Proxy.app"
+            BlueprintName = "AVPlayerHTTPProxy"
+            ReferencedContainer = "container:AVPlayerHTTPProxy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF1B5E2918C19D820086C172"
-            BuildableName = "ios-avplayer-http-proxy.app"
-            BlueprintName = "ios-avplayer-http-proxy"
-            ReferencedContainer = "container:ios-avplayer-http-proxy.xcodeproj">
+            BuildableName = "AVPlayer HTTP Proxy.app"
+            BlueprintName = "AVPlayerHTTPProxy"
+            ReferencedContainer = "container:AVPlayerHTTPProxy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF1B5E2918C19D820086C172"
-            BuildableName = "ios-avplayer-http-proxy.app"
-            BlueprintName = "ios-avplayer-http-proxy"
-            ReferencedContainer = "container:ios-avplayer-http-proxy.xcodeproj">
+            BuildableName = "AVPlayer HTTP Proxy.app"
+            BlueprintName = "AVPlayerHTTPProxy"
+            ReferencedContainer = "container:AVPlayerHTTPProxy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
