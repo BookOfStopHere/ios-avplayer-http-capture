@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <asl.h>
 
-@interface realjkViewController : UIViewController
+@interface realjkViewController : UIViewController {
+
+    IBOutlet UITextView *logTextView;
+    IBOutlet UIButton *playButton;
+    IBOutlet UIView *playerView;
+    IBOutlet UITextField *urlTextField;
+    
+    AVPlayer *avPlayer;
+}
+
 
 @end
