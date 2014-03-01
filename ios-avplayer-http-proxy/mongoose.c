@@ -44,6 +44,8 @@
 #include <limits.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <asl.h>
+#include <netdb.h>
 
 #if defined(_WIN32)		/* Windows specific #includes and #defines */
 #define	_WIN32_WINNT	0x0400	/* To make it link in VS2005 */
@@ -369,7 +371,7 @@ enum mg_option_index {
 	OPT_AUTH_GPASSWD, OPT_AUTH_PUT, OPT_ACCESS_LOG, OPT_ERROR_LOG,
 	OPT_SSL_CERTIFICATE, OPT_ALIASES, OPT_ACL, OPT_UID, OPT_PROTECT,
 	OPT_SERVICE, OPT_HIDE, OPT_ADMIN_URI, OPT_MAX_THREADS, OPT_IDLE_TIME,
-	OPT_MIME_TYPES,
+	OPT_MIME_TYPES, OPT_REVERSE_PROXY_HOST, OPT_REVERSE_PROXY_PORT,
 	NUM_OPTIONS
 };
 
@@ -3627,82 +3629,102 @@ static void
 analyze_request(struct mg_connection *conn)
 {
 	struct mg_request_info *ri = &conn->request_info;
-	char			path[FILENAME_MAX], *uri = ri->uri;
-	struct mgstat		st;
-	const struct callback	*cb;
 
-	if ((conn->request_info.query_string = strchr(uri, '?')) != NULL)
-		* conn->request_info.query_string++ = '\0';
+    ////////////////////////////////////////////////////////////////////////////////
+    // BEGIN PROXY CODE
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    struct sockaddr_in sin;
+    struct hostent *host_ent;
+    int tcp_socket;
+    
+    bool handled = false;
+    
+    char* reverse_proxy_host = conn->ctx->options[OPT_REVERSE_PROXY_HOST];
+    int reverse_proxy_port = atoi(conn->ctx->options[OPT_REVERSE_PROXY_PORT]);
+    
+    if ((host_ent = gethostbyname(reverse_proxy_host)) != NULL) {
+        if ((tcp_socket = socket(AF_INET, SOCK_STREAM, 0)) != INVALID_SOCKET) {
+            
+            sin.sin_family = PF_INET;
+            sin.sin_port = htons((uint16_t) reverse_proxy_port);
+            sin.sin_addr = * (struct in_addr *) host_ent->h_addr_list[0];
+            
+            if (connect(tcp_socket, (struct sockaddr *) &sin, sizeof(sin)) == 0) {
+                
+                char content_length[12];
+                if (0 == strcmp(ri->request_method, "POST")) {
+                    sprintf(content_length, "Content-Length: %d\r\n", ri->post_data_len);
+                } else {
+                    sprintf(content_length, "");
+                }
+                
+                char buf[4096];
+                
+                sprintf(buf, "%s %s%s%s HTTP/%d.%d\r\n%sHost: %s:%d\r\n\r\n%s\r\n",
+                        ri->request_method,
+                        ri->uri,
+                        ri->query_string != NULL ? "?" : "",
+                        ri->query_string != NULL ? ri->query_string : "",
+                        ri->http_version_major,
+                        ri->http_version_minor,
+                        content_length != NULL ? content_length : "",
+                        reverse_proxy_host,
+                        reverse_proxy_port,
+                        ri->post_data);
+                
+                clock_t begin_time = clock();
+                
+                send(tcp_socket, buf, strlen(buf), 0);
+                
+                int read = 0;
+                int size_sent = 0;
+                int buf_size = sizeof(buf);
+                bool firstPacket = true;
+                
+                while((read = recv(tcp_socket, buf, buf_size, 0)) > 0) {
 
-	(void) url_decode(uri, (int) strlen(uri), uri, strlen(uri) + 1, FALSE);
-	remove_double_dots_and_double_slashes(uri);
-	convert_uri_to_file_name(conn, uri, path, sizeof(path));
+                    if (read > 0) {
+                        
+                        if (firstPacket) {
 
-	if (!check_authorization(conn, path)) {
-		send_authorization_request(conn);
-	} else if (check_embedded_authorization(conn) == FALSE) {
-		/*
-		 * Embedded code failed authorization. Do nothing here, since
-		 * an embedded code must handle this itself by either
-		 * showing proper error message, or redirecting to some
-		 * sort of login page, or something else.
-		 */
-	} else if ((cb = find_callback(conn->ctx, FALSE, uri, -1)) != NULL) {
-		if ((strcmp(ri->request_method, "POST") != 0 &&
-		    strcmp(ri->request_method, "PUT") != 0) ||
-		    handle_request_body(conn, NULL))
-			cb->func(conn, &conn->request_info, cb->user_data);
-	} else if (strstr(path, PASSWORDS_FILE_NAME)) {
-		/* Do not allow to view passwords files */
-		send_error(conn, 403, "Forbidden", "Access Forbidden");
-	} else if ((!strcmp(ri->request_method, "PUT") ||
-	    !strcmp(ri->request_method, "DELETE")) &&
-	    (conn->ctx->options[OPT_AUTH_PUT] == NULL ||
-	     !is_authorized_for_put(conn))) {
-		send_authorization_request(conn);
-	} else if (!strcmp(ri->request_method, "PUT")) {
-		put_file(conn, path);
-	} else if (!strcmp(ri->request_method, "DELETE")) {
-		if (mg_remove(path) == 0)
-			send_error(conn, 200, "OK", "");
-		else
-			send_error(conn, 500, http_500_error,
-			    "remove(%s): %s", path, strerror(ERRNO));
-	} else if (mg_stat(path, &st) != 0) {
-		send_error(conn, 404, "Not Found", "%s", "File not found");
-	} else if (st.is_directory && uri[strlen(uri) - 1] != '/') {
-		(void) mg_printf(conn,
-		    "HTTP/1.1 301 Moved Permanently\r\n"
-		    "Location: %s/\r\n\r\n", uri);
-	} else if (st.is_directory &&
-	    substitute_index_file(conn, path, sizeof(path), &st) == FALSE) {
-		if (is_true(conn->ctx->options[OPT_DIR_LIST])) {
-			send_directory(conn, path);
-		} else {
-			send_error(conn, 403, "Directory Listing Denied",
-			    "Directory listing denied");
-		}
-#if !defined(NO_CGI)
-	} else if (match_extension(path,
-	    conn->ctx->options[OPT_CGI_EXTENSIONS])) {
-		if (strcmp(ri->request_method, "POST") &&
-		    strcmp(ri->request_method, "GET")) {
-			send_error(conn, 501, "Not Implemented",
-			    "Method %s is not implemented", ri->request_method);
-		} else {
-			send_cgi(conn, path);
-		}
-#endif /* NO_CGI */
-#if !defined(NO_SSI)
-	} else if (match_extension(path,
-	    conn->ctx->options[OPT_SSI_EXTENSIONS])) {
-		send_ssi(conn, path);
-#endif /* NO_SSI */
-	} else if (is_not_modified(conn, &st)) {
-		send_error(conn, 304, "Not Modified", "");
-	} else {
-		send_file(conn, path, &st);
-	}
+                            char log[256];
+                            snprintf(log, sizeof log, "[%c%c%c] %f - http://%s:%d%s",
+                                   buf[9], buf[10], buf[11], // HTTP Status Code
+                                   ((double)clock() - begin_time) / CLOCKS_PER_SEC, // Duration
+                                   reverse_proxy_host,
+                                   reverse_proxy_port,
+                                   ri->uri);
+                            
+                            // Send to ASL
+                            aslmsg msg = asl_new(ASL_TYPE_MSG);
+                            asl_set(msg, ASL_KEY_READ_UID, "-1");
+                            asl_log(NULL, msg, ASL_LEVEL_NOTICE, log);
+                            asl_free(msg);
+                            
+                            firstPacket = false;
+                        }
+                            
+                        if ((size_sent = send(conn->client.sock, buf, read, 0)) < 0) {
+                            break;
+                        }
+                    }
+                }
+                close(tcp_socket);
+                handled = true;
+            }
+        }
+    }
+    
+    if (!handled) {
+        send_error(conn, 404, "File Not Found", "What should I do?");
+        close(tcp_socket);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // END PROXY CODE
+    ////////////////////////////////////////////////////////////////////////////////
+
 }
 
 static void
@@ -4138,6 +4160,8 @@ set_kv_list_option(struct mg_context *ctx, const char *str)
 
 static const struct mg_option known_options[] = {
 	{"root", "\tWeb root directory", NULL, OPT_ROOT, NULL},
+    {"reverse_proxy_host", "\tReverse proxy host", NULL, OPT_REVERSE_PROXY_HOST, NULL},
+	{"reverse_proxy_port", "\tReverse proxy port", NULL, OPT_REVERSE_PROXY_PORT, NULL},
 	{"index_files",	"Index files", "index.html,index.htm,index.cgi",
 		OPT_INDEX_FILES, NULL},
 #if !defined(NO_SSL)

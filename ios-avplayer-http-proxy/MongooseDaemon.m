@@ -75,21 +75,25 @@
 	return NULL;
 }
 
-- (void)startHTTP:(NSString *)ports
+- (void)startHTTP:(NSString *)port
+                 :(NSString *)reverseProxyHost
+                 :(NSString *)reverseProxyPort
 {
-  self.ctx = mg_start();     // Start Mongoose serving thread
-  mg_set_option(ctx, "root", [DOCUMENTS_FOLDER UTF8String]);  // Set document root
-  mg_set_option(ctx, "ports", [ports UTF8String]);    // Listen on port XXXX
-  //mg_bind_to_uri(ctx, "/foo", &bar, NULL); // Setup URI handler
-
-  // Now Mongoose is up, running and configured.
-  // Serve until somebody terminates us
-  NSLog(@"Mongoose Server is running on http://%@:8080", [self localIPAddress]);
+    self.ctx = mg_start();     // Start Mongoose serving thread
+    mg_set_option(ctx, "root", [DOCUMENTS_FOLDER UTF8String]);  // Set document root
+    mg_set_option(ctx, "ports", [port UTF8String]);    // Listen on port XXXX
+    mg_set_option(ctx, "reverse_proxy_host", [reverseProxyHost UTF8String]);
+    mg_set_option(ctx, "reverse_proxy_port", [reverseProxyPort UTF8String]);
+    NSLog(@"Mongoose Server is running on http://%@:8080", [self localIPAddress]);
 }
 
-- (void)startMongooseDaemon:(NSString *)ports;
+- (void)startMongooseDaemon:(NSString *)port
+                           :(NSString *)reverseProxyHost
+                           :(NSString *)reverseProxyPort
 {
-  [self startHTTP:ports];
+    [self startHTTP:port
+                   :reverseProxyHost
+                   :reverseProxyPort];
 }
 
 - (void)stopMongooseDaemon

@@ -12,6 +12,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    ////////////////////////////////////////////////////////////////////////////////
+    // REVERSE PROXY CONFIGURATION
+    // startMongooseDaemon:@"<localPort>"
+    //                    :@"<reverseProxyHost>"
+    //                    :@"<reverseProxyPort>"
+    ////////////////////////////////////////////////////////////////////////////////
+    mongooseDaemon = [[MongooseDaemon alloc] init];
+    
+    [mongooseDaemon startMongooseDaemon:@"8080"
+                                       :@"localhost"
+                                       :@"80"];
+    
     // Override point for customization after application launch.
     return YES;
 }

@@ -45,7 +45,9 @@
 
 @property (readwrite)          struct mg_context *ctx;
 
-- (void)startMongooseDaemon:(NSString *)ports;
+- (void)startMongooseDaemon:(NSString *)ports
+                           :(NSString *)reverseProxyHost
+                           :(NSString *)reverseProxyPort;
 - (void)stopMongooseDaemon;
 
 @end
